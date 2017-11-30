@@ -4,12 +4,14 @@
 #
 Name     : zope.testing
 Version  : 4.6.2
-Release  : 3
+Release  : 4
 URL      : https://pypi.debian.net/zope.testing/zope.testing-4.6.2.tar.gz
 Source0  : https://pypi.debian.net/zope.testing/zope.testing-4.6.2.tar.gz
 Summary  : Zope testing helpers
 Group    : Development/Tools
 License  : ZPL-2.1
+Requires: zope.testing-legacypython
+Requires: zope.testing-python3
 Requires: zope.testing-python
 Requires: setuptools
 BuildRequires : pbr
@@ -24,19 +26,35 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-=================
 ``zope.testing``
-=================
-.. image:: https://img.shields.io/pypi/v/zope.testing.svg
-:target: https://pypi.python.org/pypi/zope.testing/
-:alt: Latest Version
+        =================
+
+%package legacypython
+Summary: legacypython components for the zope.testing package.
+Group: Default
+Requires: python-core
+
+%description legacypython
+legacypython components for the zope.testing package.
+
 
 %package python
 Summary: python components for the zope.testing package.
 Group: Default
+Requires: zope.testing-legacypython
+Requires: zope.testing-python3
 
 %description python
 python components for the zope.testing package.
+
+
+%package python3
+Summary: python3 components for the zope.testing package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the zope.testing package.
 
 
 %prep
@@ -47,7 +65,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1497292611
+export SOURCE_DATE_EPOCH=1512081147
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -57,7 +75,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1497292611
+export SOURCE_DATE_EPOCH=1512081147
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -68,7 +86,13 @@ echo ----[ mark ]----
 %files
 %defattr(-,root,root,-)
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
+
+%files python3
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
