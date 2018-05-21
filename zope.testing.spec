@@ -4,7 +4,7 @@
 #
 Name     : zope.testing
 Version  : 4.6.2
-Release  : 11
+Release  : 12
 URL      : https://pypi.debian.net/zope.testing/zope.testing-4.6.2.tar.gz
 Source0  : https://pypi.debian.net/zope.testing/zope.testing-4.6.2.tar.gz
 Summary  : Zope testing helpers
