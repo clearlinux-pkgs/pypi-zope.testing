@@ -4,13 +4,14 @@
 #
 Name     : zope.testing
 Version  : 4.6.2
-Release  : 13
+Release  : 14
 URL      : https://pypi.debian.net/zope.testing/zope.testing-4.6.2.tar.gz
 Source0  : https://pypi.debian.net/zope.testing/zope.testing-4.6.2.tar.gz
 Summary  : Zope testing helpers
 Group    : Development/Tools
 License  : ZPL-2.1
 Requires: zope.testing-python3
+Requires: zope.testing-license
 Requires: zope.testing-python
 Requires: setuptools
 BuildRequires : pbr
@@ -18,7 +19,6 @@ BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : setuptools-legacypython
@@ -36,6 +36,14 @@ Requires: python-core
 
 %description legacypython
 legacypython components for the zope.testing package.
+
+
+%package license
+Summary: license components for the zope.testing package.
+Group: Default
+
+%description license
+license components for the zope.testing package.
 
 
 %package python
@@ -64,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1528563709
+export SOURCE_DATE_EPOCH=1529091267
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -74,8 +82,10 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1528563709
+export SOURCE_DATE_EPOCH=1529091267
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/zope.testing
+cp LICENSE.txt %{buildroot}/usr/share/doc/zope.testing/LICENSE.txt
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
@@ -88,6 +98,10 @@ echo ----[ mark ]----
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/zope.testing/LICENSE.txt
 
 %files python
 %defattr(-,root,root,-)
