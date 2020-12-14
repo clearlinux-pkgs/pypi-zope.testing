@@ -4,7 +4,7 @@
 #
 Name     : zope.testing
 Version  : 4.7
-Release  : 36
+Release  : 37
 URL      : https://files.pythonhosted.org/packages/a2/95/2a2ed23bbb3dcf7916ff39bf349314304f6e4c4dd77d86e3930def52b45e/zope.testing-4.7.tar.gz
 Source0  : https://files.pythonhosted.org/packages/a2/95/2a2ed23bbb3dcf7916ff39bf349314304f6e4c4dd77d86e3930def52b45e/zope.testing-4.7.tar.gz
 Summary  : Zope testing helpers
