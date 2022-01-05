@@ -4,7 +4,7 @@
 #
 Name     : zope.testing
 Version  : 4.9
-Release  : 50
+Release  : 51
 URL      : https://files.pythonhosted.org/packages/28/2c/91b2082cba956e28433785bc3cd67ab51bfc9b2965fa9b62216c16bf6239/zope.testing-4.9.tar.gz
 Source0  : https://files.pythonhosted.org/packages/28/2c/91b2082cba956e28433785bc3cd67ab51bfc9b2965fa9b62216c16bf6239/zope.testing-4.9.tar.gz
 Summary  : Zope testing helpers
@@ -13,12 +13,11 @@ License  : ZPL-2.1
 Requires: zope.testing-license = %{version}-%{release}
 Requires: zope.testing-python = %{version}-%{release}
 Requires: zope.testing-python3 = %{version}-%{release}
-Requires: setuptools
 BuildRequires : buildreq-distutils3
 BuildRequires : pluggy
 BuildRequires : py-python
+BuildRequires : pypi(setuptools)
 BuildRequires : pytest
-BuildRequires : setuptools
 BuildRequires : tox
 BuildRequires : virtualenv
 
@@ -63,7 +62,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1610123816
+export SOURCE_DATE_EPOCH=1641415069
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
