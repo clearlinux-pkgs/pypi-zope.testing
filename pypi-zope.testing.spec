@@ -4,7 +4,7 @@
 #
 Name     : pypi-zope.testing
 Version  : 4.10
-Release  : 62
+Release  : 63
 URL      : https://files.pythonhosted.org/packages/af/b8/f18718a7fceb109664b70c908e2aa5743eb6a057138251ceaf7d5ab0bd9b/zope.testing-4.10.tar.gz
 Source0  : https://files.pythonhosted.org/packages/af/b8/f18718a7fceb109664b70c908e2aa5743eb6a057138251ceaf7d5ab0bd9b/zope.testing-4.10.tar.gz
 Summary  : Zope testing helpers
@@ -14,12 +14,7 @@ Requires: pypi-zope.testing-license = %{version}-%{release}
 Requires: pypi-zope.testing-python = %{version}-%{release}
 Requires: pypi-zope.testing-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : pypi(py)
 BuildRequires : pypi(setuptools)
-BuildRequires : pypi-pluggy
-BuildRequires : pypi-pytest
-BuildRequires : pypi-tox
-BuildRequires : pypi-virtualenv
 
 %description
 =================
@@ -69,7 +64,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656358297
+export SOURCE_DATE_EPOCH=1666730325
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -78,11 +73,6 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
-%check
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test
 pushd ../buildavx2/
 export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
@@ -96,7 +86,7 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-zope.testing
-cp %{_builddir}/zope.testing-4.10/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-zope.testing/a0b53f43aab58b46bf79ba756c50771c605ab4c5
+cp %{_builddir}/zope.testing-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-zope.testing/a0b53f43aab58b46bf79ba756c50771c605ab4c5 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
